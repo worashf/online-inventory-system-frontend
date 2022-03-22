@@ -1,5 +1,5 @@
 import React from "react";
-import  {Menu,Avatar } from 'antd'
+import  {Menu} from 'antd'
 import {Link} from 'react-router-dom'
 import {
     HomeOutlined, AlibabaOutlined,
@@ -19,7 +19,7 @@ export const SideBar =()=>{
     return(
         <>
         <div className="logo" >
-         <Link to ="/">    <img src={logo2} />
+         <Link to ="/">    <img src={logo2}  alt=""/>
                 <h1>OIMS</h1>
          </Link>
            </div>

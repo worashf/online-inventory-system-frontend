@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import {Table,Button,Input} from 'antd'
 import {EditOutlined,DeleteOutlined,MoreOutlined,BlockOutlined} from "@ant-design/icons"
 
@@ -40,7 +40,7 @@ const search_btn = {
 }
 const CustomerTable =() =>{
 
-
+  const [addform,setAddForm] =useState(false)
 
     const CustomerColumns =[
         {
@@ -133,6 +133,9 @@ const customerData  =[
     
 
 ]
+const handleAddForm=()=>{
+    setAddForm(true)
+}
 
     return (
         <>
@@ -145,7 +148,9 @@ const customerData  =[
             </div>
         
         </div>  
+        <div className='form-div'>
 
+        </div>
         <Table 
         dataSource={customerData}
         columns ={CustomerColumns}

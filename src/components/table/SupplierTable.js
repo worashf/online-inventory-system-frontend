@@ -86,7 +86,7 @@ const SupplierTable =() =>{
                         <Button style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Details</Button>
                      <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
                         <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
-                        <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Block</Button>
+                        <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Change Status</Button>
                     </>
                 )
             }

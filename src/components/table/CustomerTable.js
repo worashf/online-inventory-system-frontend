@@ -88,7 +88,7 @@ const CustomerTable =() =>{
                       <Button style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Details</Button>
                      <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
                         <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
-                        <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Block</Button>
+                        <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Change Status</Button>
                     </>
                 )
             }
@@ -139,7 +139,7 @@ const customerData  =[
             <div style={button_search }>
             
             <div style={search_div}>
-            <Input placeholder='Enter Supplier Name ' style={search_input} />
+            <Input placeholder='Enter First Name or Last Name ' style={search_input} />
                 <Button style={search_btn}> Search</Button>
                
             </div>

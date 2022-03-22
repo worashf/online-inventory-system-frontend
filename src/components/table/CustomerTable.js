@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {Table,Button,Input} from 'antd'
-import {EditOutlined,DeleteOutlined} from "@ant-design/icons"
+import {EditOutlined,DeleteOutlined,MoreOutlined,BlockOutlined} from "@ant-design/icons"
 
 const button_search = {
     "margin-top": "30px",
@@ -38,53 +38,95 @@ const search_btn = {
     "font-size":"20px"
     
 }
-const CategoryTable =() =>{
+const CustomerTable =() =>{
 
 
 
-    const CategoryColumns =[
+    const CustomerColumns =[
         {
             key:1,
-            title:"Category Id",
-            dataIndex: "categoryId",
+            title:"CustomerId",
+            dataIndex: "customerId",
 
         },
         {
             key:2,
-            title:"Category Name",
-            dataIndex: "categoryName",
+            title:"First Name",
+            dataIndex: "firstName",
 
         },
         {
             key:3,
+            title:"Last Name",
+            dataIndex: "lastName",
+
+        },
+        {
+            key:4,
+            title:"Email",
+            dataIndex: "email",
+
+        },
+        {
+            key:5,
+            title:"Phone 1",
+            dataIndex: "phone1",
+
+        },
+        {
+            key:6,
+            title:"Status",
+            dataIndex: "status",
+
+        },
+        {
+            key:7,
             title:"Actions",
             render:(record)=>{
                 return(
                     <>
+                      <Button style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Details</Button>
                      <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
-                  <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
+                        <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
+                        <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Block</Button>
                     </>
                 )
             }
 
         }
     ]
-const categoryData  =[
+const customerData  =[
     {
-        categoryId:1,
-        categoryName:"laptop"
+        customerId: 1,
+        firstName: "abebe",
+        lastName: "kebede",
+        email: "abebe@gmail.com",
+        phone1: "0955998652",
+        status:"Active"
     },
     {
-        categoryId:2,
-        categoryName:"desktop"
+        customerId: 2,
+        firstName: "alemu",
+        lastName: "jemal",
+        email: "alemu@gmail.com",
+        phone1: "09654231",
+        status:"Blocked"
     },
     {
-        categoryId:3,
-        categoryName:"furniture"
+        customerId: 3,
+        firstName: "Mamushet",
+        lastName: "kebede",
+        email: "mamushet@gmail.com",
+        phone1: "0966859445",
+        status:"Active"
     },
     {
-        categoryId:4,
-        categoryName:"table"
+        customerId: 4,
+        firstName: "tigst",
+        lastName: "kebede",
+        email: "tigst@gmail.com",
+        phone1: "0922564235",
+        status:"Active"
     },
     
 
@@ -95,17 +137,18 @@ const categoryData  =[
     return (
         <>
             <div style={button_search }>
-                <Button size ="large" style={add_button}>Add Category</Button>
-                <div style={search_div}>
-                <Input placeholder='Enter Category Name ' style={search_input} />
-                <Button  style={search_btn}> Search</Button>
-                </div>
             
-            </div>  
+            <div style={search_div}>
+            <Input placeholder='Enter Supplier Name ' style={search_input} />
+                <Button style={search_btn}> Search</Button>
+               
+            </div>
+        
+        </div>  
 
         <Table 
-        dataSource={categoryData}
-        columns ={CategoryColumns}
+        dataSource={customerData}
+        columns ={CustomerColumns}
         bordered="true"
         >
 
@@ -113,4 +156,4 @@ const categoryData  =[
         </>
     )
 }
-export default CategoryTable;
+export default CustomerTable;

@@ -4,7 +4,7 @@ import {Layout} from 'antd'
 import { SideBar } from '../components/SideBar'
 import { HeaderBar } from '../components/HeaderBar'
 import { FooterBar } from '../components/FooterBar'
-import CategoryTable from '../components/CategoryTable'
+import CategoryTable from '../components/table/CategoryTable'
 
 
 const {Header,Content,Sider,Footer} = Layout
@@ -16,8 +16,9 @@ const CategoryPage =() =>{
         <>
 
 <Layout className="site-layout">
-                <Sider>
-                <div className="logo" />
+                <Sider theme="light" style={{borderRight:"1px solid #111"}}>
+            
+                
                       <SideBar/>
             </Sider>
         <Layout>
@@ -25,8 +26,9 @@ const CategoryPage =() =>{
           ,paddingTop:20}}>
                <HeaderBar/>
              </Header>
-                    <Content style={{ with: "100%", height:500}}>Content
-                      <CategoryTable/>
+            <Content style={{ with: "100%", height: 500 }}>
+                      
+                      <CategoryTable />
                     </Content>
           <Footer style={{background:"#997105",}}>
               <FooterBar/>

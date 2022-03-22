@@ -1,0 +1,46 @@
+
+
+.menu-item{
+    height: 20px;
+    background-color: #797772;
+    margin-right: 50px;
+    border: 1px solid #ccb15f ;
+    border-radius: 5px;
+   
+}
+.menu-link{
+   color:"white";
+   font-size: 20px;
+   font-family: cursive;
+}
+.menu-item:hover{
+    background-color: #0e0a02;
+
+}
+.menu-link a:hover{
+    color: #fff;
+}
+.logo{
+    margin-top :10px;
+    margin-bottom: 20px;
+    height: 100px;
+
+  
+}
+.logo img{
+height: 90px;
+width: 100%;
+
+
+}
+.logo img:hover{
+    height: 80px;
+    width: 100%;
+    background-color:#797772 ;
+    
+    }
+    .logo h1{
+        color: #0e0a02;
+        font-family: cursive;
+        font-size: 20px;
+    }

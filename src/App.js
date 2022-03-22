@@ -6,6 +6,8 @@ import BrandPage from './pages/BrandPage'
 import StorePage from './pages/StorePage';
 import SupplierPage from './pages/SupplierPage';
 import CustomerPage from './pages/CustomerPage';
+import  UserPage from  './pages/UserPage'
+import CompanyPage from './pages/CompanyPage';
 import  {  BrowserRouter as Router,
   Routes,
   Route,
@@ -34,6 +36,12 @@ function App() {
          
          </Route>
          <Route path="/customer" element={<CustomerPage/>}>
+         
+         </Route>
+         <Route path="/user" element={<UserPage/>}>
+         
+         </Route>
+         <Route path="/company" element={<CompanyPage/>}>
          
          </Route>
           </Routes>

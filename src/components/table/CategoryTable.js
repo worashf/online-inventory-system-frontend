@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react'
-import { Table, Button, Input } from 'antd'
+import { Table, Button, Form, Input } from 'antd'
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
 import Modal from 'antd/lib/modal/Modal'
+import './categotyTable.css'
 
 const button_search = {
     "margin-top": "30px",
@@ -43,7 +44,7 @@ const CategoryTable = () => {
 
 
     const [isAdd, setIsAdd] = useState(false);
-
+    const [addform,setAddForm] =useState(false)
   const[categoryId, setCategoryId] =useState("")
   const[categoryName, setCategoryName] =useState("")
 
@@ -111,17 +112,59 @@ const CategoryTable = () => {
             // setNewCategory((newCategory)=>({...newCategory,name:value}))
     }
 
+    const handleAddForm=()=>{
+        setAddForm(true)
+    }
+    const closeAddForm=()=>{
+        setAddForm(false)
+    }
     return (
         <>
             <div style={button_search}>
-                <Button size="large" style={add_button} onClick={addCategory}>Add Category</Button>
+                <Button size="large" style={add_button} onClick={handleAddForm}>Add Category</Button>
+                <Button size="large" style={add_button} onClick={closeAddForm}>hide</Button>
+                <div className={addform?"add-form":"hide-form"}>
+                <Form
+      name="basic"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      initialValues={{ remember: true }}
+    
+     
+      autoComplete="off"
+    >
+      <Form.Item
+        label="Username"
+        name="username"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+     
+
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+</div>
                 <div style={search_div}>
                     <Input placeholder='Enter Category Name ' style={search_input} />
                     <Button style={search_btn}> Search</Button>
                 </div>
 
             </div>
-
+           
             <Table
                 dataSource={categoryData}
                 columns={CategoryColumns}

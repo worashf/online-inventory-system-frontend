@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react'
 import { Table, Button, Form, Input } from 'antd'
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
-import Modal from 'antd/lib/modal/Modal'
+import { EditOutlined, DeleteOutlined ,DownCircleOutlined,UpCircleOutlined  } from "@ant-design/icons"
+
 import './categotyTable.css'
 
 const button_search = {
@@ -143,8 +143,8 @@ const CategoryTable = () => {
     return (
         <>
             <div style={button_search}>
-                <Button size="large" style={add_button} onClick={handleAddForm}>Add Category</Button>
-                <Button size="large" style={add_button} onClick={closeAddForm}>hide</Button>
+                <Button   icon ={<DownCircleOutlined  style={{color:"#fff"}}/>} size="large" style={add_button} onClick={handleAddForm}>Add Category</Button>
+                <Button icon= {<UpCircleOutlined  style={{color:"#fff"}}/>} size="large" style={add_button} onClick={closeAddForm}>hide</Button>
                 <div className={addform?"add-form":"hide-form"}>
                 <Form style={form_div}
       name="basic"

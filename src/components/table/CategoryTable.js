@@ -17,7 +17,8 @@ const add_button = {
     "border-radius": "5px",
     "font-size": "20px",
     "padding-bottom": "20px",
-    "border": "1px solid #6e6859 "
+    "border": "1px solid #6e6859 ",
+    "margin-left":"10px"
 
 }
 
@@ -40,14 +41,22 @@ const search_btn = {
     "font-size": "20px"
 
 }
+const form_div = {
+    "background": "#6e6859 ",
+    "padding": "20px 20px",
+    "widht":"50%"
+}
 const CategoryTable = () => {
 
 
     const [isAdd, setIsAdd] = useState(false);
     const [addform,setAddForm] =useState(false)
-  const[categoryId, setCategoryId] =useState("")
-  const[categoryName, setCategoryName] =useState("")
+    const [newCategory, setNewCategory] = useState({
+        categoryId: "",
+        categoryName: ""
+})
 
+    const { categoryId, categoryName } = newCategory;
 
 
     const [categoryData, setCategoryData] = useState([
@@ -98,61 +107,74 @@ const CategoryTable = () => {
     ]
 
 
-    const addCategory = () => {
-        setIsAdd(true)
+ 
+   
+    const handleIdChange =(e)=>{
+        console.log(e.target.value)
+        setNewCategory((cat) => (
+          {...cat, categoryId:e.target.value}
+        ))
+            
     }
-    
-    const resetAdding = () => {
-        setIsAdd(false)
+    const handleNameChange = (e) => {
+        console.log(e.target.value)
+        setNewCategory((cat) => (
+            {...cat, categoryName:e.target.value}
+        ))
+        console.log(newCategory)
+    }
 
-    }
-    const handleChange =(e)=>{
-       
-            // const [name,value] =e.target;
-            // setNewCategory((newCategory)=>({...newCategory,name:value}))
-    }
+    const handleAddForm=(e)=>{
+     setAddForm(true)
 
-    const handleAddForm=()=>{
-        setAddForm(true)
     }
     const closeAddForm=()=>{
         setAddForm(false)
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setNewCategory({categoryId:categoryId, categoryName :categoryName} )
+        console.log(newCategory)
+         setCategoryData( [...categoryData, newCategory] )
+          
+        
+}
+
     return (
         <>
             <div style={button_search}>
                 <Button size="large" style={add_button} onClick={handleAddForm}>Add Category</Button>
                 <Button size="large" style={add_button} onClick={closeAddForm}>hide</Button>
                 <div className={addform?"add-form":"hide-form"}>
-                <Form
+                <Form style={form_div}
       name="basic"
       labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
+      wrapperCol={{ span: 8 }}
       initialValues={{ remember: true }}
     
      
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        label="Category Id"
+        name="categoryId"
+        rules={[{ required: true, message: 'Please input your category id!' }]}
       >
-        <Input />
+                            <Input value={ categoryId} onChange={ handleIdChange}/>
       </Form.Item>
 
       <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        label="Category Name"
+        name="categoryName"
+        rules={[{ required: true, message: 'Please input your category name!' }]}
       >
-        <Input.Password />
+                            <Input value={categoryName } onChange={ handleNameChange}/>
       </Form.Item>
 
      
 
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+      <Form.Item wrapperCol={{ offset: 8, span: 10 }}>
+        <Button type="primary" htmlType="submit" onClick={ handleSubmit}>
           Submit
         </Button>
       </Form.Item>
@@ -174,28 +196,7 @@ const CategoryTable = () => {
             </Table>
 
 
-            <Modal
-                title="Add New Category"
-                okText="Save"
-                visible={isAdd}
-                onCancel={resetAdding}
-                // onOk={ (newCategory)=>{
-                //     const newCategories = [...categoryData, newCategory]
-                //     setCategoryData(newCategories);
-                    
-                // }}
-            
-            >
- <Input   
- value={categoryId}
 
- />
- <Input  
-
- 
- />
-
-            </Modal>
         </>
     )
 }

@@ -1,4 +1,6 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import {listCategories} from './redux/actions/categoryAction'
 import './App.css';
 import 'antd/dist/antd.css'
 import CategoryPage from './pages/CategoryPage';
@@ -14,7 +16,34 @@ import  {  BrowserRouter as Router,
   Link
 } from "react-router-dom"
 
+const catData = [{
+  categoryId: 1,
+  categoryName: "laptop"
+},
+{
+  categoryId: 2,
+  categoryName: "desktop"
+},
+{
+  categoryId: 3,
+  categoryName: "furniture"
+},
+{
+  categoryId: 4,
+  categoryName: "table"
+}]
+
+
+
 function App() {
+
+  const dispatch = useDispatch();
+
+ 
+  useEffect(() => {
+    dispatch(listCategories(catData))
+  },[dispatch])
+
   return (
     <div className="App">
       <Router>

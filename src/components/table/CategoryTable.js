@@ -1,24 +1,26 @@
 
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Table, Button, Form, Input } from 'antd'
+import { useSelector, useDispatch } from 'react-redux'
+import {listCategories,addCategory,deleteCategory} from '../../redux/actions/categoryAction'
 import { EditOutlined, DeleteOutlined ,DownCircleOutlined,UpCircleOutlined  } from "@ant-design/icons"
 
 import './categotyTable.css'
 
 const button_search = {
-    "margin-top": "30px",
-    "margin-bottom": "20px"
+    "marginTop": "30px",
+    "marginBottom": "20px"
 }
 const add_button = {
-    "background-color": "#797772",
+    "background": "#797772",
     "color": "#111",
     "height": "50px",
-    "margin-bottom": "20px",
-    "border-radius": "5px",
-    "font-size": "20px",
-    "padding-bottom": "20px",
+    "marginBottom": "20px",
+    "borderRadius": "5px",
+    "fontSize": "20px",
+    "paddingBottom": "20px",
     "border": "1px solid #6e6859 ",
-    "margin-left":"10px"
+    "marginLeft":"10px"
 
 }
 
@@ -27,7 +29,7 @@ const search_div = {
 }
 const search_input = {
     "width": "30%",
-    "margin-left": "5%",
+    "marginLeft": "5%",
     "padding": "10px",
     "border": "2px solid #6e6859 ",
     "color": "#111"
@@ -36,9 +38,9 @@ const search_input = {
 const search_btn = {
     "height": "50px",
     "border": "2px solid #6e6859 ",
-    "margin-left": "5px",
-    "border-radius": "5px",
-    "font-size": "20px"
+    "marginLeft": "5px",
+    "borderRadius": "5px",
+    "fontSize": "20px"
 
 }
 const form_div = {
@@ -49,7 +51,7 @@ const form_div = {
 const CategoryTable = () => {
 
 
-    const [isAdd, setIsAdd] = useState(false);
+   
     const [addform,setAddForm] =useState(false)
     const [newCategory, setNewCategory] = useState({
         categoryId: "",
@@ -58,6 +60,9 @@ const CategoryTable = () => {
 
     const { categoryId, categoryName } = newCategory;
 
+
+    const categories = useSelector((state) => state.categories);
+    const dispatch = useDispatch();
 
     const [categoryData, setCategoryData] = useState([
         {
@@ -98,7 +103,7 @@ const CategoryTable = () => {
                 return (
                     <>
                         <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }} />
-                        <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
+                        <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} onClick={dispatch(deleteCategory(record))} />
                     </>
                 )
             }
@@ -108,7 +113,12 @@ const CategoryTable = () => {
 
 
  
-   
+    useEffect(() => {
+     dispatch(listCategories(categories))
+
+    }, [])
+    
+
     const handleIdChange =(e)=>{
         console.log(e.target.value)
         setNewCategory((cat) => (
@@ -133,9 +143,14 @@ const CategoryTable = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        setNewCategory({categoryId:categoryId, categoryName :categoryName} )
-        console.log(newCategory)
-         setCategoryData( [...categoryData, newCategory] )
+        const newCat = {
+            categoryId: categoryId, categoryName: categoryName
+            
+        }
+        dispatch(addCategory(newCat));
+        // setNewCategory({categoryId:categoryId, categoryName :categoryName} )
+        // console.log(newCategory)
+        //  setCategoryData( [...categoryData, newCategory] )
           
         
 }
@@ -188,7 +203,7 @@ const CategoryTable = () => {
             </div>
            
             <Table
-                dataSource={categoryData}
+                dataSource={categories}
                 columns={CategoryColumns}
                 bordered="true"
             >

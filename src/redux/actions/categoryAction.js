@@ -6,6 +6,12 @@ export const addCategory =(category) =>{
         payload:category
     }
 }
+export const listCategories = (categories) => {
+    return {
+        type:actionType.LIST_CATEGORIES,
+        payload:categories
+    }
+}
 
 export const deleteCategory =(category)=>{
   return {
@@ -14,7 +20,7 @@ export const deleteCategory =(category)=>{
   }
 }
 
-export const updateCategory =(currentId,category)=>{
+export const updateCategory =(category)=>{
     return {
         type:actionType.UPDATE_CATEGORY,
         payload:category

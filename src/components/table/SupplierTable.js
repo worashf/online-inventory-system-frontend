@@ -9,17 +9,27 @@ import {
 } from "@ant-design/icons"
 
 const button_search = {
-    "margin-top": "30px",
-    "margin-bottom":"20px"
+    "marginTop": "30px",
+    "marginBottom":"20px"
 }
+const add_button = {
+    "background": "#797772",
+    "color": "#111",
+    "height":"50px",
+    "marginBottom": "20px",
+    "borderRadius": "5px",
+    "fontSize": "20px",
+    "paddingBottom":"20px",
+    "border":"1px solid #6e6859 "
 
+}
 
 const search_div = {
     "display":"flex"
 }
 const search_input = {
     "width": "30%",
-    "margin-left": "5%",
+    "marginLeft": "5%",
     "padding": "10px",
     "border": "2px solid #6e6859 ",
     "color":"#111"
@@ -28,9 +38,9 @@ const search_input = {
 const search_btn = {
     "height": "50px",
     "border": "2px solid #6e6859 ",
-    "margin-left": "5px",
-    "border-radius": "5px",
-    "font-size":"20px"
+    "marginLeft": "5px",
+    "borderRadius": "5px",
+    "fontSize":"20px"
     
 }
 const SupplierTable =() =>{

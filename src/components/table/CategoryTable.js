@@ -1,8 +1,8 @@
 
 import React, { useState,useEffect } from 'react'
-import { Table, Button, Form, Input } from 'antd'
+import { Table, Button, Form, Input,Modal } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
-import {listCategories,addCategory,deleteCategory} from '../../redux/actions/categoryAction'
+import {listCategories,addCategory,deleteCategory,updateCategory} from '../../redux/actions/categoryAction'
 import { EditOutlined, DeleteOutlined ,DownCircleOutlined,UpCircleOutlined  } from "@ant-design/icons"
 
 import './categotyTable.css'
@@ -54,34 +54,18 @@ const CategoryTable = () => {
    
     const [addform,setAddForm] =useState(false)
     const [newCategory, setNewCategory] = useState({
-        categoryId: "",
-        categoryName: ""
-})
+        categoryName: "",
+        categoryDescription: ""
+    });
+    const [editedCategory, setEditedCategory] = useState(null);
 
-    const { categoryId, categoryName } = newCategory;
+    const {categoryName,categoryDescription } = newCategory;
 
 
     const categories = useSelector((state) => state.categories);
     const dispatch = useDispatch();
 
-    const [categoryData, setCategoryData] = useState([
-        {
-            categoryId: 1,
-            categoryName: "laptop"
-        },
-        {
-            categoryId: 2,
-            categoryName: "desktop"
-        },
-        {
-            categoryId: 3,
-            categoryName: "furniture"
-        },
-        {
-            categoryId: 4,
-            categoryName: "table"
-        }
-    ])
+  
 
     const CategoryColumns = [
         {
@@ -93,7 +77,7 @@ const CategoryTable = () => {
         {
             key: 2,
             title: "Category Name",
-            dataIndex: "categoryName",
+            dataIndex: "categoryDescription",
 
         },
         {
@@ -102,8 +86,8 @@ const CategoryTable = () => {
             render: (record) => {
                 return (
                     <>
-                        <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }} />
-                        <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} onClick={dispatch(deleteCategory(record))} />
+                        <EditOutlined  onClick={()=>{handleEdit}}style={{ color: "blue", marginLeft: 10, fontSize: 18 }} />
+                        <DeleteOutlined onClick={()=>{handleDelete(record)} } style={{ color: "red", marginLeft: 10, fontSize: 18 }}  />
                     </>
                 )
             }
@@ -114,22 +98,22 @@ const CategoryTable = () => {
 
  
     useEffect(() => {
-     dispatch(listCategories(categories))
+     dispatch(listCategories())
 
-    }, [])
+    }, [dispatch])
     
 
     const handleIdChange =(e)=>{
         console.log(e.target.value)
         setNewCategory((cat) => (
-          {...cat, categoryId:e.target.value}
+          {...cat, categoryName:e.target.value}
         ))
             
     }
     const handleNameChange = (e) => {
         console.log(e.target.value)
         setNewCategory((cat) => (
-            {...cat, categoryName:e.target.value}
+            {...cat, categoryDescription:e.target.value}
         ))
         console.log(newCategory)
     }
@@ -144,16 +128,28 @@ const CategoryTable = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newCat = {
-            categoryId: categoryId, categoryName: categoryName
+            categoryName: categoryName, categoryDescription: categoryDescription
             
         }
         dispatch(addCategory(newCat));
-        // setNewCategory({categoryId:categoryId, categoryName :categoryName} )
-        // console.log(newCategory)
-        //  setCategoryData( [...categoryData, newCategory] )
-          
+
         
-}
+    }
+    const handleDelete = (catgory) => {
+         
+        Modal.confirm({
+            title: "are you shure to delete this record",
+            okText: "Yes",
+            okType:"danger",
+            onOk: () => {
+                dispatch(deleteCategory(catgory));
+            }
+        })
+     
+    }
+    const handleEdit = (category) => {
+         dispatch(updateCategory({...category}))
+    }
 
     return (
         <>
@@ -171,19 +167,19 @@ const CategoryTable = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Category Id"
-        name="categoryId"
+        label="Category Name"
+        name="categoryName"
         rules={[{ required: true, message: 'Please input your category id!' }]}
       >
-                            <Input value={ categoryId} onChange={ handleIdChange}/>
+                            <Input value={ categoryName} onChange={ handleIdChange}/>
       </Form.Item>
 
       <Form.Item
-        label="Category Name"
-        name="categoryName"
+        label="Category Description"
+        name="categoryDescription"
         rules={[{ required: true, message: 'Please input your category name!' }]}
       >
-                            <Input value={categoryName } onChange={ handleNameChange}/>
+                            <Input value={categoryDescription } onChange={ handleNameChange}/>
       </Form.Item>
 
      

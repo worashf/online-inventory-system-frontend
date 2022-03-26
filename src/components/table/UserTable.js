@@ -11,7 +11,7 @@ const add_button = {
     "background": "#797772",
     "color": "#111",
     "height":"50px",
-    "margin-bottom": "20px",
+    "marginBottom": "20px",
     "borderRadius": "5px",
     "fontSize": "20px",
     "paddingBottom":"20px",

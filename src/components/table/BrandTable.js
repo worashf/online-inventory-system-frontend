@@ -1,8 +1,11 @@
 
-import React from 'react'
-import {Table,Button,Input} from 'antd'
-import {EditOutlined,DeleteOutlined} from "@ant-design/icons"
+import React,{useState,useEffect} from 'react'
+import {Table,Button,Input,Modal} from 'antd'
+import {EditOutlined,DeleteOutlined, DownCircleOutlined} from "@ant-design/icons"
+import { useDispatch,useSelector } from 'react-redux'
+import { listBrands ,addBrand,updateBrand,deleteBrand} from '../../redux/actions/brandActions'
 
+const { TextArea } = Input;
 const button_search = {
     "marginTop": "30px",
     "marginBottom":"20px"
@@ -40,7 +43,14 @@ const search_btn = {
 }
 const BrandTable =() =>{
 
+  const [isAdd, setIsAdd] = useState(false);
+  const [isEdit,setIsEdit] =useState(false);
 
+  const [brand,setBrand] =useState(null);
+    
+  const brands = useSelector(state =>state.brands);
+ 
+  const dispatch =useDispatch();
 
     const BrandColumns =[
         {
@@ -61,41 +71,55 @@ const BrandTable =() =>{
             render:(record)=>{
                 return(
                     <>
-                     <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
-                  <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
+                     <EditOutlined onClick={() =>{handleEditBrand(record)}} style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
+                  <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} 
+                   onClick ={()=>{handleDeleteBrand(record)}}/>
                     </>
                 )
             }
 
         }
     ]
-const brandData  =[
-    {
-        brandId:1,
-        brandName:"HP"
-    },
-    {
-        brandId:2,
-        brandName:"Dell"
-    },
-    {
-        brandId:3,
-        brandName:"Accer"
-    },
-    {
-        brandId:4,
-        brandName:"Apple"
-    },
-    
+useEffect(() =>{
+ dispatch(listBrands())
+},[dispatch])
 
-    
+const handleAddBrand =() =>{
+    setIsAdd(true)
+}
 
-]
 
+const resetAdd =()=>{
+    setIsAdd(false);
+    setBrand(null);
+}
+const handleDeleteBrand =(brand) =>{
+    Modal.confirm({
+        title: "are you sure to delete this brand",
+        okText: "Yes",
+        okType: "danger",
+        onOk: () => {
+            dispatch(deleteBrand(brand));
+        }
+    })
+}
+
+const handleEditBrand =(brand) =>{
+    setIsAdd(false);
+ setIsEdit(true);
+ setBrand({...brand})
+
+}
+
+const resetEditing =() =>{
+    setIsEdit(false);
+    setBrand(null);
+
+}
     return (
         <>
             <div style={button_search }>
-                <Button size ="large" style={add_button}>Add Brand</Button>
+                <Button icon ={<DownCircleOutlined  style={ {color:"#fff"}}/>} size ="large" style={add_button} onClick ={handleAddBrand}>Add Brand</Button>
                 <div style={search_div}>
                 <Input placeholder='Enter Brand Name ' style={search_input} />
                 <Button  style={search_btn}> Search</Button>
@@ -104,12 +128,73 @@ const brandData  =[
             </div>  
 
         <Table 
-        dataSource={brandData}
+        dataSource={brands}
         columns ={BrandColumns}
         bordered="true"
         >
 
         </Table>
+        
+         <Modal
+         title ="Add Brand"
+         visible ={isAdd}
+         okText ="Save"
+         onCancel={resetAdd}
+         onOk ={()=>{
+           
+          
+             dispatch(addBrand(brand));
+             // setIsAdd(false)
+        
+          
+             
+         }}
+         
+         >
+             <label style={{fontWeight:400,color:"blue", marginBottom:5}}> Brand Name</label>
+ 
+ <Input style={{marginBottom:10}} value ={brand?.brandName} allowClear onChange ={(e) =>{
+     setBrand(pre =>{
+         return {...pre, brandName:e.target.value}
+     })
+ }}/>
+ <label style={{fontWeight:400,color:"blue", marginBottom:5}}> Brand Description</label>
+ <TextArea value={brand?.brandDescription} allowClear onChange ={(e) =>{
+ setBrand(pre =>{
+     return {...pre,brandDescription:e.target.value}
+ })
+ }}/>
+         </Modal>
+        }
+if(isEdit){
+    <Modal
+    title ="Update Brand"
+    visible ={isEdit}
+    okText ="Update"
+    okType="primary"
+    onCancel={resetEditing}
+    onOk ={()=>{
+       dispatch(updateBrand(brand));
+          setIsEdit(false);
+    }}
+    
+    >
+        <label style={{fontWeight:400,color:"blue", marginBottom:5}}> Brand Name</label>
+
+<Input style={{marginBottom:10}} value ={brand?.brandName} allowClear onChange ={(e) =>{
+setBrand(pre =>{
+    return {...pre, brandName:e.target.value}
+})
+}}/>
+<label style={{fontWeight:400,color:"blue", marginBottom:5}}> Brand Description</label>
+<TextArea value={brand?.brandDescription} allowClear onChange ={(e) =>{
+setBrand(pre =>{
+return {...pre,brandDescription:e.target.value}
+})
+}}/>
+    </Modal>
+}
+        
         </>
     )
 }

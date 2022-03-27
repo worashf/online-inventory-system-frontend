@@ -14,7 +14,17 @@ export const categoryReducer = (state = initialState, { type, payload }) => {
             const currentCategories = state.filter((category) => category.categoryId === payload ? null : category);
             return currentCategories;
         case actionType.UPDATE_CATEGORY:
-            return  [...state,payload];
+            const Categories = state.map((category)=>{
+                if(category.categoryId === payload.categoryId){
+                    return payload;
+                }
+                else{
+                    return category
+                }
+                   
+            });
+            return Categories
+       
 
         default:
             return state

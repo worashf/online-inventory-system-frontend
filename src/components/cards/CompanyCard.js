@@ -151,7 +151,7 @@ const resetAdd =() =>{
 return(
      
     <>
-    {company? compCard():compForm()}
+    {company?.companyId? compCard():compForm() }
     <Modal 
     title ="Add address information"
     visible ={isAdd}

@@ -115,27 +115,11 @@ const resetEditing =() =>{
     setIsEdit(false);
     setBrand(null);
 
-}
-    return (
-        <>
-            <div style={button_search }>
-                <Button icon ={<DownCircleOutlined  style={ {color:"#fff"}}/>} size ="large" style={add_button} onClick ={handleAddBrand}>Add Brand</Button>
-                <div style={search_div}>
-                <Input placeholder='Enter Brand Name ' style={search_input} />
-                <Button  style={search_btn}> Search</Button>
-                </div>
-            
-            </div>  
-
-        <Table 
-        dataSource={brands}
-        columns ={BrandColumns}
-        bordered="true"
-        >
-
-        </Table>
-        
-         <Modal
+    }
+    const renderAddModal = () => {
+        return (
+            <>
+            <Modal
          title ="Add Brand"
          visible ={isAdd}
          okText ="Save"
@@ -165,9 +149,16 @@ const resetEditing =() =>{
  })
  }}/>
          </Modal>
-        }
-if(isEdit){
-    <Modal
+            </>
+        )
+    }
+
+
+
+    const renderEditModal = () => {
+        return (
+            <>
+                <Modal
     title ="Update Brand"
     visible ={isEdit}
     okText ="Update"
@@ -192,8 +183,31 @@ setBrand(pre =>{
 return {...pre,brandDescription:e.target.value}
 })
 }}/>
-    </Modal>
-}
+    </Modal> 
+
+            </>
+        )
+    }
+    return (
+        <>
+            <div style={button_search }>
+                <Button icon ={<DownCircleOutlined  style={ {color:"#fff"}}/>} size ="large" style={add_button} onClick ={handleAddBrand}>Add Brand</Button>
+                <div style={search_div}>
+                <Input placeholder='Enter Brand Name ' style={search_input} />
+                <Button  style={search_btn}> Search</Button>
+                </div>
+            
+            </div>  
+
+        <Table 
+        dataSource={brands}
+        columns ={BrandColumns}
+        bordered="true"
+        >
+
+        </Table>
+    {isAdd?renderAddModal():renderEditModal()}
+ 
         
         </>
     )

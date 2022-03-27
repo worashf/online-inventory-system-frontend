@@ -19,3 +19,13 @@ export const companyConstants ={
           SEARCH_COMPANY: "SEARCH_COMAPNY",
      LIST_COMPANY:"LIST_COMPANY" 
 }
+export const storeConstants = {
+     ADD_STORE :"ADD_STORE",
+     DELETE_STORE:"DELETE_STORE",
+     UPDATE_STORE:"UPDATE_STORE",
+          SEARCH_STORE: "SEARCH_STORE",
+     LIST_STORE: "LIST_STORE", 
+    
+    
+     
+}

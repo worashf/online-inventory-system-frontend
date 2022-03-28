@@ -8,7 +8,10 @@ import {
     CheckSquareOutlined,
     BookOutlined,
     CarryOutOutlined,
-    AppstoreOutlined 
+    AppstoreOutlined,
+    ShoppingCartOutlined,
+    PlusCircleOutlined,
+    CopyOutlined 
 } from '@ant-design/icons'
 import './sideBar.css'
 import logo2 from '../images/logo2.png'
@@ -48,6 +51,15 @@ export const SideBar =()=>{
             </Menu.Item>
             <Menu.Item key="user" className="menu-item" icon ={<CarryOutOutlined  style={ {color:"#fff",fontSize:20}}/>}>
             <Link to="/user"  className="menu-link" > Users</Link>
+            </Menu.Item>
+            <Menu.Item key="product" className="menu-item" icon ={<PlusCircleOutlined   style={ {color:"#fff",fontSize:20}}/>}>
+            <Link to="/product"  className="menu-link" > Products</Link>
+            </Menu.Item>
+            <Menu.Item key="inventory" className="menu-item" icon ={<ShoppingCartOutlined  style={ {color:"#fff",fontSize:20}}/>}>
+            <Link to="/inventory"  className="menu-link" > Inventory</Link>
+            </Menu.Item>
+            <Menu.Item key="order" className="menu-item" icon ={<CopyOutlined  style={ {color:"#fff",fontSize:20}}/>}>
+            <Link to="/order"  className="menu-link" > Orders</Link>
             </Menu.Item>
         </Menu>
     </>

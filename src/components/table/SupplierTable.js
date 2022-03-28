@@ -1,6 +1,8 @@
 
-import React from 'react'
-import {Table,Button,Input} from 'antd'
+import React,{useState,useEffect} from 'react'
+import {Table,Button,Input ,Modal} from 'antd';
+import { useDispatch,useSelector } from 'react-redux';
+import { deleteSupplier,listSuppliers } from '../../redux/actions/supplierActions';
 import {
     EditOutlined,
     DeleteOutlined,
@@ -43,96 +45,90 @@ const search_btn = {
     "fontSize":"20px"
     
 }
+
+
+ 
 const SupplierTable =() =>{
+ const suppliers = useSelector(state=>state.suppliers)
+ const dispatch = useDispatch();
 
 
 
-    const SupplierColumns =[
-        {
-            key:1,
-            title:"Supplier ID",
-            dataIndex: "supplierId",
 
-        },
-        {
-            key:2,
-            title:"Supplier Name",
-            dataIndex: "supplierName",
 
-        },
-        {
-            key:3,
-            title:"Email",
-            dataIndex: "email",
+useEffect(()=>{
+    dispatch(listSuppliers())
+},[dispatch])
 
-        },
-        {
-            key:4,
-            title:"Phone 1",
-            dataIndex: "phone1",
-
-        },
-      
-        {
-            key:5,
-            title:"User Name",
-            dataIndex: "userName",
-
-        },
-        
-        {
-            key:6,
-            title:"Status",
-            dataIndex: "status",
-
-        },
-       
-        {
-            key:7,
-            title:"Actions",
-            render:(record)=>{
-                return(
-                    <>
-                        <Button style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Details</Button>
-                     <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
-                        <DeleteOutlined style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
-                        <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Change Status</Button>
-                    </>
-                )
-            }
-
+const handleSupplierDelete= (supplier) =>{
+    Modal.confirm({
+        title: "Are you shure to delete this supplier",
+        okText: "Yes",
+        okType: "danger",
+        onOk: () => {
+            dispatch(deleteSupplier(supplier));
         }
-    ]
-const supplierData  =[
+    })
+}
+
+
+const SupplierColumns =[
     {
-        supplierId:1,
-        supplierName: "Abebe Trading",
-        phone1: "0955986083",
-        email: "uppert83@gmail.com",
-        userName: "uppert",
-        status:"Active"
-        
+        key:1,
+        title:"Supplier ID",
+        dataIndex: "supplierId",
+
     },
     {
-        supplierId:2,
-        supplierName: "Jemall tradding",
-        phone1: "0910858585",
-        email: "jemal83@gmail.com",
-        userName: "jemal",
-        status:"Blocked"
+        key:2,
+        title:"Supplier Name",
+        dataIndex: "supplierName",
+
     },
     {
-        supplierId:3,
-        supplierName: "Worash tech",
-        phone1: "0922865193",
-        email: "worash83@gmail.com",
-        userName: "worash",
-        status:"Active"
+        key:3,
+        title:"Email",
+        dataIndex: "email",
+
+    },
+    {
+        key:4,
+        title:"Phone 1",
+        dataIndex: "phone1",
+
     },
   
- 
+    {
+        key:5,
+        title:"User Name",
+        dataIndex: "userName",
 
+    },
+    
+    {
+        key:6,
+        title:"Status",
+        dataIndex: "supplierStatus",
+
+    },
+   
+    {
+        key:7,
+        title:"Actions",
+        render:(record)=>{
+            return(
+                <>
+                    <Button style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Details</Button>
+                 <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
+                 <Button  onClick={()=> handleSupplierDelete(record)}icon= {<DeleteOutlined  /> } style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
+                    <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Change Status</Button>
+                </>
+            )
+        }
+
+    }
 ]
+
 
     return (
         <>
@@ -147,7 +143,7 @@ const supplierData  =[
             </div>  
 
         <Table 
-        dataSource={supplierData}
+        dataSource={suppliers}
         columns ={SupplierColumns}
         bordered="true"
         >

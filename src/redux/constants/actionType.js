@@ -29,3 +29,13 @@ export const storeConstants = {
     
      
 }
+export const supplierConstants = {
+     ADD_SUPPLIER :"ADD_SUPPLIER",
+     DELETE_SUPPLIER:"DELETE_SUPPLIER",
+     UPDATE_SUPPLIER:"UPDATE_SUPPLIER",
+     SEARCH_SUPPLIER: "SEARCH_SUPPLIER",
+     LIST_SUPPLIER: "LIST_SUPPLIER", 
+    
+    
+     
+}

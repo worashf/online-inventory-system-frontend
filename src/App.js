@@ -10,6 +10,7 @@ import SupplierPage from './pages/SupplierPage';
 import CustomerPage from './pages/CustomerPage';
 import  UserPage from  './pages/UserPage'
 import CompanyPage from './pages/CompanyPage';
+import SupplierRegistration from './pages/SupplierRegistration';
 import  {  BrowserRouter as Router,
   Routes,
   Route,
@@ -48,7 +49,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<CategoryPage/>}>
+          <Route path="/" element={<SupplierRegistration/>}>
          
           </Route>
           <Route path="/category" element={<CategoryPage/>}>

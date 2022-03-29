@@ -11,6 +11,7 @@ import CustomerPage from './pages/CustomerPage';
 import  UserPage from  './pages/UserPage'
 import CompanyPage from './pages/CompanyPage';
 import SupplierRegistration from './pages/SupplierRegistration';
+import OrderPage from './pages/OrderPage';
 import  {  BrowserRouter as Router,
   Routes,
   Route,
@@ -72,6 +73,9 @@ function App() {
          
          </Route>
          <Route path="/company" element={<CompanyPage/>}>
+         
+         </Route>
+         <Route path="/order" element={<OrderPage/>}>
          
          </Route>
           </Routes>

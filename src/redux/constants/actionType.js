@@ -39,3 +39,13 @@ export const supplierConstants = {
     
      
 }
+export const orderConstants = {
+     ADD_ORDER :"ADD_ORDER",
+     DELETE_ORDER:"DELETE_ORDER",
+     UPDATE_ORDER:"UPDATE_ORDER",
+     SEARCH_ORDER:"SEARCH_ORDER",
+     LIST_ORDER: "LIST_ORDER", 
+    
+    
+     
+}

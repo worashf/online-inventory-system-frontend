@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { Table, Button, Form, Input, Modal } from 'antd'
+import { Table, Button, Form, Input, Modal,message } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { listCategories, addCategory, deleteCategory, updateCategory } from '../../redux/actions/categoryAction'
 import { EditOutlined, DeleteOutlined, DownCircleOutlined, UpCircleOutlined } from "@ant-design/icons"
@@ -135,6 +135,7 @@ const CategoryTable = () => {
 
         }
         dispatch(addCategory(newCat));
+        message.success("saved successfully",1)
 
 
     }

@@ -5,6 +5,11 @@ import { companyReducer } from "./companyReducer";
 import { storeReducer } from "./storeReducer";
 import { supplierReducer } from "./supplierReducer";
 import { orderReducer } from "./orderReducer";
+import { productReducer } from "./productReducer";
+import { inventoryReducer } from "./inventoryReduce";
+import { roleReducer } from "./roleReducer";
+import { userReducer } from "./userReducer";
+
 const rootReducer = combineReducers({
     categories: categoryReducer,
     brands:brandReducer,
@@ -12,6 +17,10 @@ const rootReducer = combineReducers({
     stores:storeReducer,
     suppliers:supplierReducer,
     orders:orderReducer,
+    products:productReducer,
+    inventories:inventoryReducer,
+    roles:roleReducer,
+    users:userReducer,
     
 })
 

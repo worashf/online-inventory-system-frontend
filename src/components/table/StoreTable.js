@@ -181,7 +181,7 @@ const resetEditing =() =>{
             allowClear
             onChange={(e) => {
               setNewStore((pre) => {
-                return { ...pre, storeSize: e.target.value };
+                return { ...pre, storeSize:parseInt(e.target.value)  };
               });
             }}
                 />
@@ -207,7 +207,7 @@ const resetEditing =() =>{
            allowClear
            onChange={(e) => {
              setNewStore((pre) => {
-               return { ...pre, floor: e.target.value };
+               return { ...pre, floor: parseInt(e.target.value) };
              });
            }}
                 />
@@ -220,7 +220,7 @@ const resetEditing =() =>{
            allowClear
            onChange={(e) => {
              setNewStore((pre) => {
-               return { ...pre, room: e.target.value };
+               return { ...pre, room: parseInt(e.target.value) };
              });
            }}
          />

@@ -47,7 +47,29 @@ export const updateSupplier = (supplier) => async dispatch => {
     catch (err) {
         
     }
+}
+    export const approveSupplier = (supplierId, supplier) => async dispatch => {
+        
+      console.log(supplierId)
+        try {
+            const response = await axios.put(`/api/suppliers/approve/${supplierId}`,supplier);
+            dispatch({ type: supplierConstants.APPROVE_SUPPLIER, payload: response.data })
+        }
+        catch (err) {
+            
+        }
    
+}
+export const declineSupplier = (supplier) => async dispatch => {
+    const { supplierId } = supplier;
+    try {
+        const response = await axios.put(`/api/suppliers/decline/${supplierId}`);
+        dispatch({ type: supplierConstants.APPROVE_SUPPLIER, payload: response.data })
+    }
+    catch (err) {
+        
+    }
+
 }
   
 

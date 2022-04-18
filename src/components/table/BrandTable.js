@@ -128,7 +128,8 @@ const resetEditing =() =>{
            
           
              dispatch(addBrand(brand));
-             // setIsAdd(false)
+            setBrand(null)
+            
         
           
              

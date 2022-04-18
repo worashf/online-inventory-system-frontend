@@ -28,8 +28,8 @@ export const SideBar =()=>{
            </div>
             
         <Menu  mode="inline" theme ="light" className="menu">
-                <Menu.Item key="/" className="menu-item" icon={<HomeOutlined style={ {color:"#fff",fontSize:20}}/>} >
-            <Link to="/" className="menu-link" >Home</Link>
+                <Menu.Item key="/home" className="menu-item" icon={<HomeOutlined style={ {color:"#fff",fontSize:20}}/>} >
+            <Link to="supplierreg" className="menu-link" > sup reg</Link>
             </Menu.Item>
             <Menu.Item key="company" className="menu-item" icon ={<AlibabaOutlined style={ {color:"#fff",fontSize:30}} />}>
             <Link to="/company"  className="menu-link" >Company</Link>

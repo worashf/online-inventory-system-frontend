@@ -26,8 +26,6 @@ export const storeConstants = {
           SEARCH_STORE: "SEARCH_STORE",
      LIST_STORE: "LIST_STORE", 
     
-    
-     
 }
 export const supplierConstants = {
      ADD_SUPPLIER :"ADD_SUPPLIER",
@@ -35,8 +33,8 @@ export const supplierConstants = {
      UPDATE_SUPPLIER:"UPDATE_SUPPLIER",
      SEARCH_SUPPLIER: "SEARCH_SUPPLIER",
      LIST_SUPPLIER: "LIST_SUPPLIER", 
-    
-    
+     APROVE_SUPPLIER:"APPROVE_SUPPLIER",
+     DECLINE_SUPPLIER:"DECLINE_SUPPLIER"
      
 }
 export const orderConstants = {
@@ -45,7 +43,34 @@ export const orderConstants = {
      UPDATE_ORDER:"UPDATE_ORDER",
      SEARCH_ORDER:"SEARCH_ORDER",
      LIST_ORDER: "LIST_ORDER", 
-    
-    
-     
+   
+}
+export const productConstants = {
+     ADD_PRODUCT :"ADD_PRODUCT",
+     DELETE_PRODUCT:"DELETE_PRODUCT",
+     UPDATE_PRODUCT:"UPDATE_PRODUCT",
+     SEARCH_PRODUCT:"SEARCH_PRODUCT",
+     LIST_PRODUCT: "LIST_PRODUCT", 
+}
+export const inventoryConstants = {
+     ADD_INVENTORY :"ADD_INVENTORY",
+     DELETE_INVENTORY:"DELETE_INVENTORY",
+     UPDATE_INVENTORY:"UPDATE_INVENTORY",
+     SEARCH_INVENTORY:"SEARCH_INVENTORY",
+     LIST_INVENTORY: "LIST_INVENTORY", 
+}
+export const userConstants = {
+     ADD_USER:"ADD_USER",
+     DELETE_USER:"DELETE_USER",
+     UPDATE_USER:"UPDATE_USER",
+     SEARCH_USER:"SEARCH_USER",
+     LIST_USERS: "LIST_USERS", 
+     CHECK_TOKEN_SUCESS:'CHECK_TOKEN_SUCESS'
+}
+export const roleConstants = {
+     ADD_ROLE:"ADD_ROLE",
+     DELETE_ROLE:"DELETE_ROLE",
+     UPDATE_ROLE:"UPDATE_ROLE",
+     SEARCH_ROLE:"SEARCH_ROLE",
+     LIST_ROLES: "LIST_ROLES", 
 }

@@ -1,8 +1,8 @@
 
 import React,{useState,useEffect} from 'react'
-import {Table,Button,Input ,Modal} from 'antd';
+import {Table,Button,Input ,Modal, message} from 'antd';
 import { useDispatch,useSelector } from 'react-redux';
-import { deleteSupplier,listSuppliers } from '../../redux/actions/supplierActions';
+import { deleteSupplier,listSuppliers,approveSupplier,declineSupplier } from '../../redux/actions/supplierActions';
 import {
     EditOutlined,
     DeleteOutlined,
@@ -49,11 +49,13 @@ const search_btn = {
 
  
 const SupplierTable =() =>{
+const [isApprove, setIsApprove] =useState(false);
+ const [supplier,setSupplier] =useState(null);
+ const [supplierId,setSupplierId] =useState("")
+
+
  const suppliers = useSelector(state=>state.suppliers)
  const dispatch = useDispatch();
-
-
-
 
 
 useEffect(()=>{
@@ -70,6 +72,24 @@ const handleSupplierDelete= (supplier) =>{
         }
     })
 }
+const handleAprove =(supplier)=>{
+   const {supplierId} =supplier
+setIsApprove(true)
+setSupplierId(supplierId)
+
+}
+
+const resetApproving =() =>{
+    setIsApprove(false)
+    setSupplier(null)
+    setSupplierId("")
+}
+const handleDecline =(supplier)=>{
+
+    dispatch(declineSupplier(supplier))
+    message.success("declined",1)
+ }
+ 
 
 
 const SupplierColumns =[
@@ -111,17 +131,21 @@ const SupplierColumns =[
         dataIndex: "supplierStatus",
 
     },
-   
+     
     {
         key:7,
         title:"Actions",
         render:(record)=>{
             return(
                 <>
-                    <Button style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Details</Button>
-                 <EditOutlined style={{ color: "blue", marginLeft: 10, fontSize: 18 }}  /> 
+
+    
                  <Button  onClick={()=> handleSupplierDelete(record)}icon= {<DeleteOutlined  /> } style={{ color: "red", marginLeft: 10, fontSize: 18 }} />
-                    <Button style={{border:"2px solid #797772",marginLeft:10}} icon ={<BlockOutlined />}>Change Status</Button>
+              
+                            <Button onClick={()=>handleAprove(record)} style={{border:"2px solid #797772",marginLeft:10,marginRight:10}} icon ={<BlockOutlined />}>Approve</Button>
+                  
+                 
+                   <Button  onClick={()=>handleDecline(record)} style={{border:"2px solid #797772"}} icon ={<MoreOutlined />}> Decline</Button>
                 </>
             )
         }
@@ -129,6 +153,54 @@ const SupplierColumns =[
     }
 ]
 
+const renderCreateSupplierAcountModal = () => {
+    return (
+      <>
+        <Modal
+          title="Create Supplier Account"
+          visible={isApprove}
+          okText="create"
+          onCancel={resetApproving}
+          onOk={() => {
+             dispatch(approveSupplier(supplierId, supplier))
+             resetApproving()
+          }}
+        >
+          <label style={{ fontWeight: 400, color: "blue", marginBottom: 5 }}>
+           
+            User Name
+          </label>
+
+          <Input placeholder='Enter User Name'
+            style={{ marginBottom: 10 }}
+            value={supplier?.userName}
+            allowClear
+            onChange={(e) => {
+              setSupplier((pre) => {
+                return { ...pre, userName: e.target.value };
+              });
+            }}
+          />
+          <label style={{ fontWeight: 400, color: "blue", marginBottom: 5 }}>
+           
+           Password
+          </label>
+          <Input.Password placeholder='Enter Password'
+            value={supplier?.password}
+            allowClear
+            onChange={(e) => {
+              setSupplier((pre) => {
+                return { ...pre, password: e.target.value };
+              });
+            }}
+                />
+            
+         
+        </Modal>
+      </>
+    );
+    };
+    
 
     return (
         <>
@@ -149,6 +221,7 @@ const SupplierColumns =[
         >
 
         </Table>
+        {isApprove && renderCreateSupplierAcountModal()}
         </>
     )
 }

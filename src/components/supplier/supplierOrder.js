@@ -16,6 +16,9 @@ const SupplierOrder = () => {
      const[addSaleOrder,setAddSaleOrder] =useState(false);
      const [orderId,setOrderId] =useState("");
      const [saleOrders, setSaleOrders] = useState([]);
+     const [suppliedProduct,setSuppliedProduct] =useState(null);
+     const [addSuppliedProduct,setAddSuppliedProduct]= useState(false);
+     const [saleOrderId,setSaleOrderId] =useState("");
      const [showSaleOrder,setShowSaleOrder] =useState(false);
 
 
@@ -33,6 +36,7 @@ const SupplierOrder = () => {
 const handleViewOrderProduct =async(order)=>{
     const {orderId} = order;
     setViewOrderProduct(true);
+    setShowSaleOrder(false);
     const response = await axios.get(`api/order-products/${orderId}`);
      setOrderProducts(response.data);
 }
@@ -58,12 +62,28 @@ const  handleCreateSaleOrder =async()=>{
 }
 const handleShowSaleOrder =async()=>{
   setShowSaleOrder(true)
+  setViewOrderProduct(false)
   const response = await axios.get(`api/sale-orders/supplier/${userName}`);
    setSaleOrders(response.data);
 }
 const hideShowSaleOrder =async()=>{
   setShowSaleOrder(false)
    setSaleOrders([]);
+}
+
+const handleAddSupplieddProduct =(saleOrder)=>{
+    setAddSuppliedProduct(true)
+    const {saleOrderId} =saleOrder;
+    setSaleOrderId(saleOrderId);
+}
+const resetAddSuppliedProduct =()=>{
+   
+    setAddSuppliedProduct(false);
+   setSuppliedProduct(null)
+}
+const createSuppliedProduct =async()=>{
+    const response = await axios.post(`api/supplied-products/${saleOrderId}`,suppliedProduct);
+   
 }
  const OrderColumns = [
         {
@@ -132,7 +152,7 @@ const hideShowSaleOrder =async()=>{
               return (
                   <>
                       <Button onClick={()=>handleViewOrderProduct(record)}> View Order Product</Button>
-                      <Button onClick={() =>handleAddSaleOrder(record)}> Create Sale Order</Button>
+                      <Button onClick={() =>handleAddSupplieddProduct(record)}> Create Supplied Product</Button>
                   
                   </>
               )
@@ -243,6 +263,82 @@ const hideShowSaleOrder =async()=>{
         );
       };
 
+
+      const renderAddSuppliedProductModal = () => {
+        return (
+          <>
+            <Modal
+              title= "Add Supplied Product"
+              visible={addSuppliedProduct}
+              okText="Save"
+              onCancel={resetAddSuppliedProduct}
+              onOk={() => {
+                 
+                createSuppliedProduct();
+                message.success("Created succesfully",1)
+               resetAddSuppliedProduct();
+                
+              }}
+            >
+              <label style={{ fontWeight: 400, color: "blue", marginBottom: 5 }}>
+               
+               Procut name
+              </label>
+    
+              <Input placeholder='enter supplied product name'
+                style={{ marginBottom: 10,padding: 10}}
+                value={suppliedProduct?.suppliedProductName}
+                allowClear
+                onChange={(e) => {
+                  setSuppliedProduct((pre) => {
+                   return { ...pre, suppliedProductName: e.target.value };
+                  });
+                }}
+              />
+                 <label style={{ fontWeight: 400, color: "blue", marginBottom: 5 }}>
+               
+               Procut Quantiry
+              </label>
+    
+              <Input placeholder='Enter supplied product quantity'
+                style={{ marginBottom: 10,padding: 10}}
+                value={suppliedProduct?.suppliedProductQuantity}
+                allowClear
+                onChange={(e) => {
+                  setSuppliedProduct((pre) => {
+                   return { ...pre, suppliedProductQuantity: e.target.value };
+                  });
+                }}
+              />
+                 <label style={{ fontWeight: 400, color: "blue", marginBottom: 5 }}>
+               
+               Procut Price
+              </label>
+    
+              <Input placeholder='Enter supplied product price'
+                style={{ marginBottom: 10,padding: 10}}
+                value={suppliedProduct?.suppliedProductPrice}
+                allowClear
+                onChange={(e) => {
+                  setSuppliedProduct((pre) => {
+                   return { ...pre, suppliedProductPrice: e.target.value };
+                  });
+                }}
+              />
+           
+         
+
+           
+                 
+
+
+           
+            </Modal>
+  
+          </>
+        );
+      };
+
     return (
         <> 
         <div style={{display:"flex", justifyContent:"flex-end",marginBottom:10, marginTop:10}}>
@@ -291,6 +387,7 @@ const hideShowSaleOrder =async()=>{
 
             )}
             {addSaleOrder && renderAddSaleOrderModal()}
+            {addSuppliedProduct && renderAddSuppliedProductModal()}
         </>
     )
 }

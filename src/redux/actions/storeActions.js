@@ -1,7 +1,8 @@
 import { storeConstants } from '../constants/actionType'
 import axios from 'axios'
 
-export const addStore= (companyId,store) => async dispatch => {
+export const addStore= (store) => async dispatch => {
+    const{companyId} =store
     try {
         const response = await axios.post(`/api/stores/${companyId}`, store);
         if (response.data) {

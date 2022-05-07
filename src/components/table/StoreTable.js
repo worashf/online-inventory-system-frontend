@@ -107,7 +107,11 @@ const resetEditing =() =>{
         const response = await axios.post(`api/stores/address/${storeId}`, address);
         console.log(response.data)
 }
-    
+const addStore = async () => {
+  const response = await axios.post(`http://localhost:8080/api/stores/${companyId}`, newStore);
+  console.log(response.data)
+}
+
   const StoreColumns = [
     {
       key: 1,
@@ -152,16 +156,27 @@ const resetEditing =() =>{
           okText="Save"
           onCancel={resetAdd}
           onOk={() => {
-            dispatch(addStore(companyId, newStore));
+             addStore()
+     
               setIsAdd(false)
               setNewStore(null);
           }}
         >
+               <Input disabled
+            style={{ marginBottom: 10 }}
+            value={companyId}
+            allowClear
+            onChange={(e) => {
+              setNewStore((pre) => {
+                return { ...pre, companyId};
+              });
+            }}
+          />
           <label style={{ fontWeight: 400, color: "blue", marginBottom: 5 }}>
            
             Store Name
           </label>
-
+     
           <Input
             style={{ marginBottom: 10 }}
             value={newStore?.storeName}

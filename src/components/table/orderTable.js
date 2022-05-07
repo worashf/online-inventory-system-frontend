@@ -495,8 +495,6 @@ const handleViewOrderProduct = async (order)=>{
         <>
             <div style={button_search}>
                 <Button onClick={handleAdd} icon={<DownCircleOutlined style={{ color: "#fff" }} />} size="large" style={add_button} >Create Order</Button>
-                <Button icon={<UpCircleOutlined style={{ color: "#fff" }} />} size="large" style={add_button} >Purchases Order</Button>
-                <Button icon={<RightCircleOutlined style={{ color: "#fff" }} />} size="large" style={add_button} >Sales Order</Button>
                 <div style={search_div}>
                     <Input placeholder='Enter Order Name ' style={search_input} />
                     <Button style={search_btn}> Search</Button>

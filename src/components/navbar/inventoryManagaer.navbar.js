@@ -2,7 +2,7 @@ import React from "react";
 import  {Menu} from 'antd'
 import {Link} from 'react-router-dom'
 import {
-    HomeOutlined,
+    FastForwardOutlined ,
     ShoppingCartOutlined,
     PlusCircleOutlined,
     CopyOutlined 
@@ -27,11 +27,17 @@ export const InventoryNavBar =()=>{
            <Menu.Item key="product" className="menu-item" icon ={<PlusCircleOutlined   style={ {color:"#fff",fontSize:20}}/>}>
             <Link to="/product"  className="menu-link" > Products</Link>
             </Menu.Item>
+            <Menu.Item key="supplied-product" className="menu-item" icon ={<PlusCircleOutlined   style={ {color:"#fff",fontSize:20}}/>}>
+            <Link to="/supplied-product"  className="menu-link"> Supplied Products</Link>
+            </Menu.Item>
             <Menu.Item key="inventory" className="menu-item" icon ={<ShoppingCartOutlined  style={ {color:"#fff",fontSize:20}}/>}>
             <Link to="/inventory"  className="menu-link" > Inventory</Link>
             </Menu.Item>
             <Menu.Item key="order" className="menu-item" icon ={<CopyOutlined  style={ {color:"#fff",fontSize:20}}/>}>
             <Link to="/order"  className="menu-link" > Orders</Link>
+            </Menu.Item>
+            <Menu.Item key="inventory-transfer" className="menu-item" icon ={<FastForwardOutlined  style={ {color:"#fff",fontSize:20}}/>}>
+            <Link to="/inventory-transfer"  className="menu-link" > Transfer Inventory</Link>
             </Menu.Item>
         </Menu>
     </>

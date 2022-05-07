@@ -1,12 +1,12 @@
 import { productConstants} from '../constants/actionType'
 import axios from 'axios'
 
-export const addProduct= (product) => async dispatch => {
+export const addProduct= (suppliedProductId,product) => async dispatch => {
    
-    const { supplierId, orderNumber} =product;
-    console.log(orderNumber,supplierId,product);
+    const { supplierId, categoryId,brandId} =product;
+
     try {
-        const response = await axios.post(`/api/products/${supplierId}/${orderNumber}`, product);
+        const response = await axios.post(`/api/products/${supplierId}/${suppliedProductId}/${categoryId}/${brandId}`, product);
         if (response.data) {
             dispatch({ type: productConstants.ADD_PRODUCT, payload: response.data })
         }
@@ -18,7 +18,7 @@ export const addProduct= (product) => async dispatch => {
 }
 export const listProducts = () => async dispatch => {
     try {
-        const response =  await axios.get("/api/products")
+        const response =  await axios.get("/api/products/un-stocked")
         console.log(response)
         dispatch({ type: productConstants.LIST_PRODUCT, payload: response.data })
     }

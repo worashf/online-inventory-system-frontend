@@ -18,6 +18,8 @@ import InventoryPage from './pages/InventoryPage';
 import Login from './pages/login';
 import Signup from './pages/signUp';
 import SupplierOrderPage from './pages/supplierOrderPage';
+import SuppliedProductPage from './pages/suppliedProductPage'
+import TransferInventoryPage from './pages/TransferInventoryPage';
 import  {  BrowserRouter as Router,
   Routes,
   Route,
@@ -98,6 +100,12 @@ function App() {
          
          </Route>
          <Route path="/supplier-order" element={<SupplierOrderPage/>}>
+         
+         </Route>
+         <Route path="/supplied-product" element={<SuppliedProductPage/>}>
+         
+         </Route>
+         <Route path="/inventory-transfer" element={<TransferInventoryPage/>}>
          
          </Route>
           </Routes>

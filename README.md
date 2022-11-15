@@ -7,7 +7,7 @@ The main page for admin user contain links to create stores, categories,brands a
 
 [Back-end repo](https://github.com/worashf/online-inventory-management-system)
 
-## Login To Main page screen navigation
+# Login To Main page screen navigation
 
 ![screenshot](/public/images/login-page-screen-flow.png)
 

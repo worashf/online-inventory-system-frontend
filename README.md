@@ -5,7 +5,9 @@
 
 The main page for admin user contain links to create stores, categories,brands and to manage users and company information. The main page for supplier user contain link received purchase order form inventory manager and add sale order to send the sale order to inventory manager. The main page for corporate manager contain links to view available inventory in each store and the weekly conception of each store. Also the Main Menu for inventory manager user contain links for create inventory, inventory products and to receive sale order from supplier. Hence, by the above design, the user would have the ability to view the links based on his or her role.
 
-[Back-end repo](https://github.com/worashf/online-inventory-management-system)
+# Project documanetation](https://docs.google.com/document/d/1dBpQyxJ-X0bvCYcEpiOnKG3x9aaLZawS/edit?usp=sharing&ouid=112092182286642653827&rtpof=true&sd=true)
+
+# [Back-end repo](https://github.com/worashf/online-inventory-management-system)
 
 # Login To Main page screen navigation
 

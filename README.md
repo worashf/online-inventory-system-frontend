@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# OneInventory Front-End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> OneInventory front-end is built with ReactJS, Redux, and AntDesign. User type the URL of the web site the home page of the system is displayed. The home page accepts the login information from the user like user name and password. Also on the home page if the user want to become the supplier the option to sign up is there on the home page. The Main Menu is displayed when the user successfully logs on to the system based on user role. As observed in the functional requirements analysis section, the core business functionality supported by the system is inventory management and inventory transfer.
+> The application would also provide inventory tracking and reporting features. It was analyzed that the inventory manager could view the inventory level and then the user go to create purchase order screen and create order and add product to be ordered and send it to supplier.
 
-## Available Scripts
+The main page for admin user contain links to create stores, categories,brands and to manage users and company information. The main page for supplier user contain link received purchase order form inventory manager and add sale order to send the sale order to inventory manager. The main page for corporate manager contain links to view available inventory in each store and the weekly conception of each store. Also the Main Menu for inventory manager user contain links for create inventory, inventory products and to receive sale order from supplier. Hence, by the above design, the user would have the ability to view the links based on his or her role.
 
-In the project directory, you can run:
+[Back-end repo](https://github.com/worashf/online-inventory-management-system)
 
-### `npm start`
+## Login To Main page screen navigation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![screenshot](/public/images/login-page-screen-flow.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Admin page screen flow
 
-### `npm test`
+![screenshot](/public/images/admin-page-screen-flow.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Inventory Manager Page Screen Flow
 
-### `npm run build`
+![screenshot](/public/images/inventory-manager-screen-flow.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Built With
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ReactJs
+- Redux
+- AntDesign
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+To get the copy of this project in your computer,clone this repository or just download it.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Code editor like vs code
+- node js installed
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Setup
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Download or clone the repository
+- Open the folder in your IDE
+- Install the dependencies
+- Run the app by "npm start"
 
-## Learn More
+## Authors
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+👤 **Worash**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- GitHub: [@githubhandle](https://github.com/worashf)
+- Twitter: [@twitterhandle](https://twitter.com/WorashAboche)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/worash-abocherugn-a02219154/)
 
-### Code Splitting
+## Online Demo version
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+[Link(##)]
 
-### Analyzing the Bundle Size
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Contributions, issues, and feature requests are welcome!
 
-### Making a Progressive Web App
+Feel free to check the [issues page](../../issues/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Show your support
 
-### Advanced Configuration
+Give a ⭐️ if you like this project!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Acknowledgments
 
-### Deployment
+- Hat tip to anyone whose code was used
+- Inspiration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📝 License
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is [MIT](./MIT.md) licensed.
